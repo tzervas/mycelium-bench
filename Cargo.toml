@@ -25,15 +25,42 @@ mlir-dialect = ["mycelium-mlir/mlir-dialect"]
 
 [dependencies]
 # The execution backends under measurement (read-only — the harness measures them, never changes them).
-mycelium-core = { path = "../mycelium-core", version = "0.463.1" }
-mycelium-interp = { path = "../mycelium-interp", version = "0.463.1" }
-mycelium-mlir = { path = "../mycelium-mlir", version = "0.463.1" }
-mycelium-l1 = { path = "../mycelium-l1", version = "0.463.1" }
+mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "781d3fcceba82acfe6b0eb46650513bd78a2416b" }
+mycelium-interp = { git = "https://github.com/tzervas/mycelium-runtime", rev = "ab9cee665b620ed80ab74ea61ea639817dc49077" }
+mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "f144d635e970257aee5b618f8cdfaa736e2c391d" }
+mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "cd32a1ed7ab7d2be38c9c3047da7318d182b7a1c" }
 # The certified binary<->ternary swap engine the differential corpus exercises (same engine all paths use).
-mycelium-cert = { path = "../mycelium-cert", version = "0.463.1" }
+mycelium-cert = { git = "https://github.com/tzervas/mycelium-runtime", rev = "ab9cee665b620ed80ab74ea61ea639817dc49077" }
 # The OS-thread Scheduler (M-709) driving the multicore scaling curves (measurement only — the
 # scheduler itself is unmodified, read-only from this crate's perspective).
-mycelium-std-runtime = { path = "../mycelium-std-runtime", version = "0.463.1" }
+mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "b1770c4f8f8e00d948eb33b35b714378a13a7148" }
 # Deterministic JSON for the machine-readable report + the LLM-harness report ingestion.
 serde = { workspace = true }
 serde_json = { workspace = true }
+
+# --- standalone workspace root (course-correction Phase B, 2026-07-18; steer handoff §6.2) ---
+[workspace]
+
+[workspace.package]
+version = "0.464.0"
+edition = "2021"
+rust-version = "1.96.1"
+license = "MIT"
+repository = "https://github.com/tzervas/mycelium-bench"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+blake3 = "1"
+
+[workspace.lints.rust]
+# ADR-014: unsafe permitted-but-documented; the check is clippy::undocumented_unsafe_blocks.
+unsafe_code = "allow"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+undocumented_unsafe_blocks = "warn"
+
+# G2 never-silent arithmetic: release builds panic on overflow (monorepo parity).
+[profile.release]
+overflow-checks = true
