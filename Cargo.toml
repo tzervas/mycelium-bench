@@ -25,15 +25,15 @@ mlir-dialect = ["mycelium-mlir/mlir-dialect"]
 
 [dependencies]
 # The execution backends under measurement (read-only — the harness measures them, never changes them).
-mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "781d3fcceba82acfe6b0eb46650513bd78a2416b" }
-mycelium-interp = { git = "https://github.com/tzervas/mycelium-runtime", rev = "ab9cee665b620ed80ab74ea61ea639817dc49077" }
-mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "f144d635e970257aee5b618f8cdfaa736e2c391d" }
-mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "cd32a1ed7ab7d2be38c9c3047da7318d182b7a1c" }
+mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "46d2515cbd86d2ae4d1365f4adcd2796737e9f0b" }
+mycelium-interp = { git = "https://github.com/tzervas/mycelium-runtime", rev = "487b1e7049ff521b1a6fa33f376245089e7dc1e1" }
+mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "505448cbfb5553a34aca726f0d1b884981a83631" }
+mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "2b92f54349eb0d4f67e32e983874df76908b9ab6" }
 # The certified binary<->ternary swap engine the differential corpus exercises (same engine all paths use).
-mycelium-cert = { git = "https://github.com/tzervas/mycelium-runtime", rev = "ab9cee665b620ed80ab74ea61ea639817dc49077" }
+mycelium-cert = { git = "https://github.com/tzervas/mycelium-runtime", rev = "487b1e7049ff521b1a6fa33f376245089e7dc1e1" }
 # The OS-thread Scheduler (M-709) driving the multicore scaling curves (measurement only — the
 # scheduler itself is unmodified, read-only from this crate's perspective).
-mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "b1770c4f8f8e00d948eb33b35b714378a13a7148" }
+mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "297d69e42a468adfeb582ea425a10887674ef4cb" }
 # Deterministic JSON for the machine-readable report + the LLM-harness report ingestion.
 serde = { workspace = true }
 serde_json = { workspace = true }
