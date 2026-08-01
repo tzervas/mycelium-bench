@@ -25,7 +25,7 @@ mlir-dialect = ["mycelium-mlir/mlir-dialect"]
 
 [dependencies]
 # The execution backends under measurement (read-only — the harness measures them, never changes them).
-mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "46d2515cbd86d2ae4d1365f4adcd2796737e9f0b" }
+mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "57ef45b453eef1f02bdfb1f0cad1034dabd32b1f" }
 mycelium-interp = { git = "https://github.com/tzervas/mycelium-runtime", rev = "cb3a96348f718661dbd3db43224a036df272e177" }
 mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "5458549e682749e4558717623217230cdc633290" }
 mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "31f7aaa956cca0e1c7a894eeaff4d10d58b5b2b8" }
