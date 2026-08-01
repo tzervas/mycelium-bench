@@ -33,7 +33,7 @@ mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "4e4a29679
 mycelium-cert = { git = "https://github.com/tzervas/mycelium-runtime", rev = "7842042d770108b2d179ff2874f1871dc4821604" }
 # The OS-thread Scheduler (M-709) driving the multicore scaling curves (measurement only — the
 # scheduler itself is unmodified, read-only from this crate's perspective).
-mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "582993aa861750270a5491ce676dceb12a7efad5" }
+mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "7204982aa3ccd91b415e286b006e6774073ec36a" }
 # Deterministic JSON for the machine-readable report + the LLM-harness report ingestion.
 serde = { workspace = true }
 serde_json = { workspace = true }
