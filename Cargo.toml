@@ -28,7 +28,7 @@ mlir-dialect = ["mycelium-mlir/mlir-dialect"]
 mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "3958d2ea3c3921611e33f1f00e3469b29a939a76" }
 mycelium-interp = { git = "https://github.com/tzervas/mycelium-runtime", rev = "f9e7c3946836c91848a5b6de13ed9dc61665c4fd" }
 mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "35e72c390a5697d1ea5ab6266d61e9f5894fa6bc" }
-mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "1d422648d6f41e1077c8f8b7ae7c7e38b2bd254f" }
+mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "09dc66df09cafb8cc9fc65e1743adeb74faf4e3f" }
 # The certified binary<->ternary swap engine the differential corpus exercises (same engine all paths use).
 mycelium-cert = { git = "https://github.com/tzervas/mycelium-runtime", rev = "f9e7c3946836c91848a5b6de13ed9dc61665c4fd" }
 # The OS-thread Scheduler (M-709) driving the multicore scaling curves (measurement only — the
