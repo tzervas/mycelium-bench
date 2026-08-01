@@ -27,13 +27,13 @@ mlir-dialect = ["mycelium-mlir/mlir-dialect"]
 # The execution backends under measurement (read-only — the harness measures them, never changes them).
 mycelium-core = { git = "https://github.com/tzervas/mycelium-core", rev = "46d2515cbd86d2ae4d1365f4adcd2796737e9f0b" }
 mycelium-interp = { git = "https://github.com/tzervas/mycelium-runtime", rev = "cb3a96348f718661dbd3db43224a036df272e177" }
-mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "0c1cc66afc0f11ad96994124dba28aa07a8e0d3f" }
+mycelium-mlir = { git = "https://github.com/tzervas/mycelium-codegen", rev = "5458549e682749e4558717623217230cdc633290" }
 mycelium-l1 = { git = "https://github.com/tzervas/mycelium-l1", rev = "2b92f54349eb0d4f67e32e983874df76908b9ab6" }
 # The certified binary<->ternary swap engine the differential corpus exercises (same engine all paths use).
 mycelium-cert = { git = "https://github.com/tzervas/mycelium-runtime", rev = "cb3a96348f718661dbd3db43224a036df272e177" }
 # The OS-thread Scheduler (M-709) driving the multicore scaling curves (measurement only — the
 # scheduler itself is unmodified, read-only from this crate's perspective).
-mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "297d69e42a468adfeb582ea425a10887674ef4cb" }
+mycelium-std-runtime = { git = "https://github.com/tzervas/mycelium-std-runtime", rev = "582993aa861750270a5491ce676dceb12a7efad5" }
 # Deterministic JSON for the machine-readable report + the LLM-harness report ingestion.
 serde = { workspace = true }
 serde_json = { workspace = true }
