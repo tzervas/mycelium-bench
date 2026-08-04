@@ -16,3 +16,39 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test
+
+  # S-BENCH-GATE (PKG-CI-TRUTH, tzervas/mycelium-lang#48): invoke this repo's own bench
+  # harness for real (`cargo run --release --bin bench`), never `cargo bench` against
+  # nonexistent Criterion targets — this repo's harness is a `[[bin]] name="bench"`, so the
+  # generic `bench: run` reusable-ci-rust input would be vacuously green or a no-op.
+  #
+  # What this gates: the harness runs a small (14-case) v0-calculus program corpus (see
+  # src/corpus.rs) through the interp/AOT-env-machine/JIT/direct-LLVM backends (the
+  # `mlir-dialect` feature stays OFF by default; when off/toolchain-absent it records a
+  # graceful Skip, distinguished in the report from a hard failure — see src/backend.rs).
+  # It measures relative wall-clock speed and cross-backend behavioural agreement on that
+  # fixed corpus. It does NOT measure GPU-backed execution (no backend here needs a GPU
+  # device today) and does NOT constitute a performance claim about the language — no
+  # target/threshold is asserted on the numbers themselves (VR-5); only that the run
+  # actually happened and produced a non-trivial report. Treat any single run's numbers as
+  # a snapshot for future comparison, not a publishable benchmark result.
+  #
+  # The assertion below is the meaningful FAIL_ENV-shaped guard for this repo: previously no
+  # CI path invoked the harness at all, so a green check meant nothing about benchmarking
+  # (the same fail-open class as a `placeholder` job). Now, if the corpus/report pipeline
+  # ever produces zero cases, this step fails loudly instead of the job reporting green.
+  bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.96.1
+      - name: run the real bench harness
+        run: cargo run --release --bin bench -- --out reports --stdout
+      - name: assert non-trivial report
+        run: |
+          set -eu
+          test -s reports/latest-report.json
+          cases=$(python3 -c "import json,sys;print(len(json.load(open('reports/latest-report.json'))['run']['cases']))")
+          test "$cases" -gt 0
+      - uses: actions/upload-artifact@v7
+        with: {name: "bench-report-${{ github.run_id }}", path: reports/}
